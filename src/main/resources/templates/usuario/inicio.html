@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "layout/layout :: head"></head>
+<body>
+<header th:replace = "layout/layout :: header"></header>
+
+<div class = "container">
+
+	<h1>Hospital index</h1>
+	
+	<table class="table table-striped">
+					<thead>
+						<tr>
+	
+							<th scope="col">#</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Confirmar</th>
+						</tr>
+					</thead>
+					<tbody th:each="medico: ${pedidos}">
+						<tr>
+							
+							<td th:text="${medico.id}">Mark</td>
+							<td th:text="${medico.estado}">Otto</td>
+						
+						<td>
+								
+								<a  th:href="@{ '/pedido/confirmar/' + ${medico.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a  th:href="@{ '/pedido/cancelar/' + ${medico.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				
+				<div sec:authorize="hasRole('ROLE_ADMIN')" class="card-footer text-muted">
+				<a th:href="@{/usuario/pedido/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Plato Prron</a>
+				</div>
+</div>
+
+<footer th:replace = "layout/layout :: footer"></footer>
+</body>
+</html>

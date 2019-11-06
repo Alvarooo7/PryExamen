@@ -1,4 +1,4 @@
-# Examen T3 Peláez ÁLvaro
+# Examen T3 Peláez Álvaro
 ```
 N00122429
 ```

@@ -25,7 +25,7 @@ public class PedidoServiceImpl implements PedidoService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Pedido> findById(Integer id) throws Exception {
+	public Optional<Pedido> findById(Long id) throws Exception {
 		return pedidoRepository.findById(id);
 	}
 
@@ -43,7 +43,7 @@ public class PedidoServiceImpl implements PedidoService{
 
 	@Override
 	@Transactional
-	public void deleteById(Integer id) throws Exception {
+	public void deleteById(Long id) throws Exception {
 		pedidoRepository.deleteById(id);
 	}
 

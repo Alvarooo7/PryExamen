@@ -13,14 +13,14 @@
 						<tr>
 	
 							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
 							<th scope="col">Estado</th>
-							<th scope="col">Confirmar</th>
 						</tr>
 					</thead>
-					<tbody th:each="medico: ${pedidos}">
+					<tbody th:each="medico: ${detallesPedido}">
 						<tr>
 							
-							<td th:text="${medico.id}">Mark</td>
+							<td th:text="${medico.plato.nombre}">Mark</td>
 							<td th:text="${medico.estado}">Otto</td>
 						
 						<td>

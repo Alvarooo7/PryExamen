@@ -10,7 +10,7 @@ import com.example.examen.entity.Pedido;
 import com.example.examen.entity.Usuario;
 
 
-public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
+public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 
 	Optional<Pedido> findByUsuario(Usuario usuario);
 	//Busca a nivel de las ENTITIES

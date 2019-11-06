@@ -100,6 +100,24 @@ public class UsuarioController {
 		return "/login";
 	}
 	
+	@GetMapping("/pedido/info/{id}")
+	public String info (@PathVariable long id,Model model,SessionStatus session) {
+		try {
+			Optional<Pedido> pedidoOptional = pedidoS.findById(id);
+			if (pedidoOptional.isPresent()) {
+				
+				List<DetallePedido> listaDetalles = pedidoOptional.get().getDetalles();
+				model.addAttribute("detallesPedido", listaDetalles);
+			}
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return "usuario/info";
+	}
+	
 	@GetMapping("pedido/nuevo/{id}")
 	public String nuevo(@PathVariable int id,Model model, SessionStatus session) {
 		
@@ -123,7 +141,7 @@ public class UsuarioController {
 					pedido.setUsuario(optional.get());
 					
 				} else {
-					return "xxx";
+					return "access-denied";
 				}
 			
 				
@@ -170,38 +188,88 @@ public class UsuarioController {
 	}
 	
 	
-	@GetMapping("pedido/confirmar")
-	public String confirmar(Model model, SessionStatus session) {
-		Pedido pedido = new Pedido();
-		pedido.setEstado("no confirmado");
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String username = authentication.getName();
+	@GetMapping("pedido/confirmar/{id}")
+	public String confirmar(@PathVariable long id,Model model, SessionStatus session) {
 		try {
-			Optional<Usuario> optional = usuario.findByUsername(username);
-			if (optional.isPresent()) {
-				pedido.setUsuario(optional.get());
-			} else {
-				return "index";
+		Optional<Pedido> pedidoOptional = pedidoS.findById(id); 
+		if (pedidoOptional.isPresent() ) {
+			
+			if(pedidoOptional.get().getEstado().equalsIgnoreCase("no confirmado")) {
+				try {
+					pedidoOptional.get().setEstado("confirmado");
+					pedidoS.save(pedidoOptional.get());
+					session.setComplete();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+				}
+				
+				
+			
+					List<Pedido> listaPedido =pedidoS.findAll();
+					model.addAttribute("pedidos", listaPedido);
+
 			}
 			
-			pedidoS.save(pedido);
-			session.setComplete();
 			
-			try {
-				List<Pedido> pedidosByUsuario = optional.get().getPedido();
-				 model.addAttribute("pedidos", pedidosByUsuario);
-			} catch (Exception e) {
-				return "index";
-			}
-			
-			return "usuario/inicio";
+		}
+
+		return "usuario/inicio";
+		
 		} catch (Exception e) {
-			
+			List<Plato> listaPlato=new ArrayList<Plato>();
+			try {
+				listaPlato = platoS.findAll();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+
+			}
+			model.addAttribute("platos",listaPlato);
 			return "index";
 		}
-		
-		
 
+	}
+	
+	
+	@GetMapping("pedido/delete/{id}")
+	public String descartar(@PathVariable long id,Model model, SessionStatus session) {
+		try {
+		Optional<Pedido> pedidoOptional = pedidoS.findById(id); 
+		if (pedidoOptional.isPresent() ) {
+			
+			if(pedidoOptional.get().getEstado().equalsIgnoreCase("no confirmado")) {
+				try {
+					detalleS.deleteByPedido(id);
+					pedidoS.deleteById(id); 
+					session.setComplete();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					
+				}
+
+			}
+			
+			
+		}
+		List<Pedido> listaPedido =pedidoS.findAll();
+		model.addAttribute("pedidos", listaPedido);
+
+		return "usuario/inicio";
+		
+		} catch (Exception e) {
+			List<Plato> listaPlato=new ArrayList<Plato>();
+			try {
+				listaPlato = platoS.findAll();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			model.addAttribute("platos",listaPlato);
+			return "index";
+		}
 
 	}
 	

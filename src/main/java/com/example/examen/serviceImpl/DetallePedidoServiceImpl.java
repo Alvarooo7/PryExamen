@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.examen.entity.DetallePedido;
+import com.example.examen.entity.Pedido;
 import com.example.examen.repository.DetallePedidoRepository;
 import com.example.examen.service.DetallePedidoService;
 @Service
@@ -50,6 +51,13 @@ public class DetallePedidoServiceImpl implements DetallePedidoService{
 	@Transactional
 	public void deleteAll() throws Exception {
 		detallePedidoRepository.deleteAll();
+	}
+
+	@Override
+	@Transactional
+	public void deleteByPedido(Long codigo) throws Exception {
+		// TODO Auto-generated method stub
+		detallePedidoRepository.deleteByPedido(codigo);
 	}
 
 }

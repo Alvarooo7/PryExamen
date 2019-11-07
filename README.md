@@ -1,6 +1,6 @@
 # Smart Car WIFI
 
-_Prototipo de carro inteligente controlado a control remoto vía wifi. Utilizamos sensores ultrasónicos y temperatura para recopilar los datos externos, estos datos recopilados se muestran en dashboard. Para almacenar las credenciales de la conexión wifi y del sistema de alerta para su configuración se utiliza Firebase._
+_Prototipo de carro inteligente controlado a control remoto vía wifi. Utilizamos sensores ultrasónicos y temperatura para recopilar los datos externos, estos datos recopilados se muestran en dashboard. Para almacenar y obtener las credenciales de la conexión wifi y del sistema de alerta para su configuración se utiliza Firebase._
 
 ## Instalación 🔧
 

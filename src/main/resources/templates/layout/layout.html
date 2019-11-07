@@ -17,7 +17,7 @@
 <body>
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-			<a class="navbar-brand" th:href="@{/}"><i class="fas fa-users"></i> RP</a>
+			<a class="navbar-brand" th:href="@{/}"><i class="fas fa-users"></i> El Prron</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,17 +29,14 @@
 					<li class="nav-item active"><a class="nav-link" th:href="@{/}"><i class="fas fa-home"></i> Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/medico}">
-						<i class="fas fa-home"></i> Medico
+					<li sec:authorize="hasRole('ROLE_CLIENTE')" class="nav-item"><a class="nav-link" th:href="@{/}">
+						<i class="fas fa-home"></i> Escoger Plato
 					</a></li>
-					<li sec:authorize="hasRole('ROLE_CLIENTE')" class="nav-item"><a class="nav-link" th:href="@{/usuario/pedido/nuevo}">
-						<i class="fas fa-home"></i> Solicitar Pedido
-					</a></li>
-					<li sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/usuario}">
+					<li sec:authorize="hasRole('ROLE_CLIENTE')" class="nav-item"><a class="nav-link" th:href="@{/usuario/pedido/listar}">
 						<i class="fas fa-home"></i> Lista Pedidos
 					</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/}">
-						<i class="fas fa-home"></i> Usuario
+					<li sec:authorize="hasRole('ROLE_GERENTE')" class="nav-item"><a class="nav-link" th:href="@{/usuario/listar/empleados}">
+						<i class="fas fa-circle"></i> Empleados
 					</a></li>
 					<li sec:authorize="isAnonymous()" class="nav-item">
 						<a class="nav-link" th:href="@{/usuario/register}">

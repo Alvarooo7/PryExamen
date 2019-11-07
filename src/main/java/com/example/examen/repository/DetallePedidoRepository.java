@@ -14,7 +14,9 @@ public interface DetallePedidoRepository extends JpaRepository<DetallePedido, In
 
 	@Transactional
 	@Modifying
-	@Query(value="delete DetallePedido d where d.pedido.id =:codigo ")
-	void deleteByPedido(Long codigo) throws Exception;
+	@Query(value="delete detalle_pedido where pedido_id =:codigo " , nativeQuery=true)
 	
+	void deleteByPedido(Long codigo) throws Exception;
+	//Por defecto nativeQuery es false, se utilizan todas las clases existentes en el proyecto no en BD OJO
+	//@Query(value="delete DetallePedido d where d.pedido.id =:codigo ")
 }

@@ -31,7 +31,7 @@ public class InitDB implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 	
-	/*	this.usuarioRepository.deleteAll();
+		this.usuarioRepository.deleteAll();
 		this.authorityRepository.deleteAll();
 		
 		Usuario cliente = new Usuario();
@@ -64,6 +64,6 @@ public class InitDB implements CommandLineRunner{
 		gerente.addAuthority("ACCESS_REST2");
         
         List<Usuario> usuarios = Arrays.asList(camareros, gerente,cliente);        
-        this.usuarioRepository.saveAll(usuarios);*/
+        this.usuarioRepository.saveAll(usuarios);
 	}
 }

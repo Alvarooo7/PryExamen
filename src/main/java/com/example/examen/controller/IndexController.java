@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.example.examen.entity.Pedido;
 import com.example.examen.entity.Plato;
 import com.example.examen.entity.TipoPlato;
+import com.example.examen.service.PedidoService;
 import com.example.examen.service.PlatoService;
 import com.example.examen.service.TipoPlatoService;
 
@@ -26,18 +28,30 @@ public class IndexController {
 	@Autowired
 	private PlatoService plato;
 
+	
+	@Autowired
+	private PedidoService pedidoService;
+	
 	@Autowired
 	private TipoPlatoService tipo;
 
 	@GetMapping
 	public String inicio(Model model) {
-		List<Plato> lista = new ArrayList<Plato>();
+		List<Plato> listaPlatos = new ArrayList<Plato>();
 		try {
-			lista = plato.findAll();
+			listaPlatos = plato.findAll();
 		} catch (Exception e) {
 			model.addAttribute("dangerSave", "Error");
 		}
-		model.addAttribute("platos",lista);
+		List<Pedido> listaPedidos = new ArrayList<Pedido>();
+		try {
+			listaPedidos = pedidoService.findAll();
+		} catch (Exception e) {
+			model.addAttribute("dangerSavePedido", "Error");
+		}
+		
+		model.addAttribute("platos",listaPlatos);
+		model.addAttribute("pedidos",listaPedidos);
 		return "index";
 
 	}

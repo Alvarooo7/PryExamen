@@ -6,30 +6,22 @@
 
 	<div class="container">
 
-		<h1>Lista Pedidos</h1>
+		<h1>Lista Empleados / Usuario</h1>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
 
 					<th scope="col">#</th>
-					<th scope="col">Estado</th>
-					<th scope="col">Confirmar</th>
+					<th scope="col">Username</th>
+					<th scope="col">Nombre</th>
 				</tr>
 			</thead>
-			<tbody th:each="medico: ${pedidos}">
+			<tbody th:each="medico: ${empleados}">
 				<tr>
-
 					<td th:text="${medico.id}">Mark</td>
-					<td th:text="${medico.estado}">Otto</td>
-
-					<td><a th:href="@{ '/usuario/pedido/info/' + ${medico.id} }"
-						class="btn btn-info"> <i class="fas fa-info"></i>
-					</a> <a th:href="@{ '/usuario/pedido/confirmar/' + ${medico.id} }"
-						class="btn btn-warning"> <i class="fas fa-edit"></i>
-					</a> <a th:href="@{ '/usuario/pedido/delete/' + ${medico.id} }"
-						class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
-					</a></td>
+					<td th:text="${medico.username}">Otto</td>
+					<td th:text="${medico.nombre}">Prro</td>
 				</tr>
 			</tbody>
 		</table>

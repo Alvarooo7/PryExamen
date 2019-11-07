@@ -60,6 +60,21 @@ public class UsuarioController {
 		
 	}
 	
+	@GetMapping("/listar/empleados")
+	public String listarEmpleados (Model model) {
+		List<Usuario> lista = new ArrayList<Usuario>();
+		try {
+			 lista = usuario.findAll();
+		} catch (Exception e) {;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		model.addAttribute("empleados", lista);
+		return "usuario/empleados";
+		
+	}
+	
 	
 	@GetMapping("/register")
 	public String registrarUsuario (Model model) {
@@ -117,6 +132,55 @@ public class UsuarioController {
 		
 		return "usuario/info";
 	}
+	
+	
+	@GetMapping("/pedido/listar")
+	public String nuevo(Model model, SessionStatus session) {
+		
+		/*DetallePedido detallePedido = new DetallePedido();*/
+		try {
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String username = authentication.getName();
+			
+				Optional<Usuario> optional = usuario.findByUsername(username);
+				if (optional.isPresent()) {
+					
+					List<Pedido> pedidosByUsuario = optional.get().getPedido();
+					model.addAttribute("pedidos",pedidosByUsuario);
+					
+				} else {
+					List<Plato> lista = new ArrayList<Plato>();
+					
+					lista = platoS.findAll();				
+					model.addAttribute("dangerSave", "Error");
+					model.addAttribute("platos",lista);
+					return "index";
+				}
+				
+			session.setComplete();
+							
+	
+			return "usuario/inicio";
+				
+	}
+		
+	 catch (Exception e1) {
+			List<Plato> lista = new ArrayList<Plato>();
+			try {
+				lista = platoS.findAll();
+			} catch (Exception e) {
+				model.addAttribute("dangerSave", "Error");
+			}
+			
+		model.addAttribute("platos",lista);
+		return "index";
+		}
+		
+		
+
+	}
+	
 	
 	@GetMapping("pedido/nuevo/{id}")
 	public String nuevo(@PathVariable int id,Model model, SessionStatus session) {

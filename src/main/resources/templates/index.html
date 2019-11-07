@@ -56,6 +56,9 @@
 
 	<div sec:authorize="hasRole('ROLE_CAMARERO')" class="container">
 		<h1>Lista Pedidos</h1>
+		<div th:if="${dangerSavePedido}" class="alert alert-danger" role="alert">
+			<span th:text="${dangerSavePedido}"></span>
+		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -71,7 +74,7 @@
 					<td th:text="${medico.id}">Mark</td>
 					<td th:text="${medico.estado}">Otto</td>
 
-					<td><a th:href="@{ '/medico/info/' + ${medico.id} }"
+					<td><a th:href="@{ '/usuario/info/' + ${medico.id} }"
 						class="btn btn-info"> <i class="fas fa-info"></i>
 					</a> <a th:href="@{ '/usuario/pedido/delete/' + ${medico.id} }"
 						class="btn btn-danger"> <i class="fas fa-trash-alt"></i>

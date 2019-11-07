@@ -29,7 +29,7 @@ public class LoggingAccessDeniedHandler implements AccessDeniedHandler{
 
 	        if (auth != null) {
 	            log.info(auth.getName()
-	                    + " estÃ¡ tratando de acceder a un recurso protegido: "
+	                    + " estas tratando de acceder a un recurso protegido: "
 	                    + request.getRequestURI());
 	        }
 

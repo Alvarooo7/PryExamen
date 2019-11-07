@@ -4,7 +4,7 @@ _Prototipo de carro inteligente controlado a control remoto vía wifi. Utilizamo
 
 ## Instalación 🔧
 
-_Se requiere instalar varias librerías🤓 _
+_Se requiere instalar varias librerías🤓 
 
 ## Autores ✒️
 

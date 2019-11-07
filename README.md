@@ -1,13 +1,20 @@
-# Examen T3 Peláez Álvaro
-```
-N00122429
-```
+# Smart Car WIFI
 
-## Funcionalidades
+_Prototipo de carro inteligente controlado a control remoto vía wifi. Utilizamos sensores ultrasónicos y temperatura para recopilar los datos externos, estos datos recopilados se muestran en dashboard. Para almacenar las credenciales de la conexión wifi y del sistema de alerta para su configuración se utiliza Firebase. 
 
-Se completaron todas las funcionalidades del examen 
+## Instalación 🔧
 
-### Cosas Nuevas
+_Se requiere instalar varias librerías🤓 _
 
-Se utilizaron anotaciones como @Query, @Modify , entre otras además se utilza ajax para la actualización dinámica.
+## Autores ✒️
 
+
+* **Peláez Álvaro** - *Trabajo Global* - [Alvarooo7](https://github.com/Alvarooo7)
+
+
+## Expresiones de Gratitud 🎁
+
+* Comenta a otros sobre este proyecto 📢
+* Invita una cerveza 🍺 a alguien del equipo. 
+* Da las gracias públicamente 🤓.
+* etc.
